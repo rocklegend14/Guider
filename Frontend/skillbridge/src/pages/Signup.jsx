@@ -30,7 +30,6 @@ export default function Signup() {
   function handleSubmit(e) {
     e.preventDefault()
 
-    // 🔒 ALL validation in one place
     const newErrors = {
       fullName: validateFullName(form.fullName),
       email: validateEmail(form.email),
@@ -44,7 +43,6 @@ export default function Signup() {
 
     setErrors(newErrors)
 
-    // stop submission if ANY error exists
     if (Object.values(newErrors).some(error => error !== null)) return
 
     console.log("Signup success:", form)
