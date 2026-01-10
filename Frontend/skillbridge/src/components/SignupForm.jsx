@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import {
   validateFullName,
   validateEmail,
@@ -8,7 +7,7 @@ import {
   validateRole
 } from "../utils/validators"
 
-export default function Signup() {
+export default function SignupForm() {
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -49,70 +48,76 @@ export default function Signup() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+    <form onSubmit={handleSubmit} className="auth-form">
+      
 
-      <div>
-        <label>Full Name</label>
+      <div className="input-group">
+        <span className="input-icon">👤</span>
         <input
+          type="text"
           name="fullName"
           value={form.fullName}
           onChange={handleChange}
+          placeholder="Name"
+          className="form-input"
         />
-        {errors.fullName && <p>{errors.fullName}</p>}
+        {errors.fullName && <span className="error-text">{errors.fullName}</span>}
       </div>
 
-      <div>
-        <label>Email</label>
+      <div className="input-group">
+        <span className="input-icon">✉</span>
         <input
+          type="email"
           name="email"
           value={form.email}
           onChange={handleChange}
+          placeholder="Email"
+          className="form-input"
         />
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <span className="error-text">{errors.email}</span>}
       </div>
 
-      <div>
-        <label>Password</label>
+      <div className="input-group">
+        <span className="input-icon">🔒</span>
         <input
           type="password"
           name="password"
           value={form.password}
           onChange={handleChange}
+          placeholder="Password"
+          className="form-input"
         />
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <span className="error-text">{errors.password}</span>}
       </div>
 
-      <div>
-        <label>Confirm Password</label>
+      <div className="input-group">
+        <span className="input-icon">🔒</span>
         <input
           type="password"
           name="confirmPassword"
           value={form.confirmPassword}
           onChange={handleChange}
+          placeholder="Confirm Password"
+          className="form-input"
         />
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
       </div>
 
-      <div>
-        <label>Role</label>
+      <div className="input-group">
         <select
           name="role"
           value={form.role}
           onChange={handleChange}
+          className="form-input form-select"
         >
           <option value="">Select role</option>
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
-        {errors.role && <p>{errors.role}</p>}
+        {errors.role && <span className="error-text">{errors.role}</span>}
       </div>
 
-      <button type="submit">Create Account</button>
-
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+      <button type="submit" className="btn-primary">SIGN UP</button>
     </form>
   )
 }

@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { validateEmail, validatePassword } from "../utils/validators"
+import DitherBG from "../components/DitherBG";
+import Auth from "../pages/Auth";
 
-export default function Login() {
+export default function LoginForm() {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -35,47 +37,35 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-
-      <div>
-        <label>Email</label>
+    <form onSubmit={handleSubmit} className="auth-form">
+      <div className="input-group">
+        <span className="input-icon">✉</span>
         <input
+          type="email"
           name="email"
           value={form.email}
           onChange={handleChange}
+          placeholder="Email"
+          className="form-input"
         />
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <span className="error-text">{errors.email}</span>}
       </div>
 
-      <div>
-        <label>Password</label>
+      <div className="input-group">
+        <span className="input-icon">🔒</span>
         <input
           type="password"
           name="password"
           value={form.password}
           onChange={handleChange}
+          placeholder="Password"
+          className="form-input"
         />
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <span className="error-text">{errors.password}</span>}
       </div>
 
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="rememberMe"
-            checked={form.rememberMe}
-            onChange={handleChange}
-          />
-          Remember me
-        </label>
-      </div>
-
-      <div>
-        <button type="submit">Login</button>
-        <Link to="/forgot-password">Forgot password?</Link>
-        <Link to="/signup">New User ? Sign up</Link>
-      </div>
+      <button type="submit" className="btn-primary">LOG IN</button>
+      <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
     </form>
   )
 }
