@@ -1,0 +1,133 @@
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #4a9b8e;
+  border-right: 1px solid #4a9b8e;
+  padding: 24px 16px;
+  background: linear-gradient(
+    180deg,
+  #3a8d84, 
+  #255f59
+ );
+ transition: width 0.3s ease;
+}
+
+.sidebar-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;  
+  width: 100%;
+  padding: 20px;
+  margin-bottom:40px;
+}
+
+.logo-text {
+  display:inline-block;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffffff;
+  margin-right:25px;
+  margin-top:5px !important;
+}
+
+.hamburger {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+.hamburger:hover span {
+  background: #e0f2f1;
+}
+
+.sidebar.open .sidebar-header {
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.sidebar.closed .sidebar-header {
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.sidebar.closed .nav-item {
+  justify-content: center;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.sidebar-nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+
+}
+
+.sidebar-nav a.active {
+  color: #4f9c8b;
+  font-weight: 600;
+}
+
+.nav-item{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.25s ease;
+  opacity: 0.9;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.18);
+  font-weight: 500;
+}

@@ -57,6 +57,7 @@ body {
   min-height: 100dvh;
   margin: 0;
   padding: 0;
-  background: #060010;
+  background: white;
   overflow: hidden;
 }
+

@@ -1,8 +1,12 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { validateEmail, validatePassword } from "../utils/validators"
+import { useNavigate } from "react-router-dom"
+import { validateEmail, validatePassword } from "../../utils/validators"
 
 export default function LoginForm() {
+  
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -32,6 +36,9 @@ export default function LoginForm() {
     if (Object.values(newErrors).some(Boolean)) return
 
     console.log("Login data:", form)
+
+    // TEMP: simulate successful login
+    navigate("/dashboard");
   }
 
   return (

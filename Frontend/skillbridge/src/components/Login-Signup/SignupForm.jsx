@@ -5,7 +5,7 @@ import {
   validatePassword,
   validateConfirmPassword,
   validateRole
-} from "../utils/validators"
+} from "../../utils/validators"
 
 export default function SignupForm() {
   const [form, setForm] = useState({
