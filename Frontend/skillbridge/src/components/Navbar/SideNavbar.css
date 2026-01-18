@@ -1,7 +1,7 @@
 
 .sidebar {
   width: 220px;
-  height: 100vh;
+  height: auto;
   background: #4a9b8e;
   border-right: 1px solid #4a9b8e;
   padding: 24px 16px;
