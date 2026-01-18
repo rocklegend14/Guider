@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { validateEmail, validatePassword } from "../utils/validators"
-import DitherBG from "../components/DitherBG";
-import Auth from "../pages/Auth";
+import { useNavigate } from "react-router-dom"
+import { validateEmail, validatePassword } from "../../utils/validators"
 
 export default function LoginForm() {
+  
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -34,6 +36,9 @@ export default function LoginForm() {
     if (Object.values(newErrors).some(Boolean)) return
 
     console.log("Login data:", form)
+
+    // TEMP: simulate successful login
+    navigate("/dashboard");
   }
 
   return (
@@ -63,9 +68,11 @@ export default function LoginForm() {
         />
         {errors.password && <span className="error-text">{errors.password}</span>}
       </div>
-
       <button type="submit" className="btn-primary">LOG IN</button>
-      <Link to="/forgot-password" className="forgot-password">Forgot password?</Link>
+      <div className="forgot-wrapper">
+        <Link to="/forgot-password"><button className="forgot-password">Forgot password?</button></Link>
+      </div>
+      
     </form>
   )
 }

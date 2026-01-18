@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LoginForm from "../components/LoginForm";
-import SignupForm from "../components/SignupForm";
-import DitherBG from "../components/DitherBG";
+import LoginForm from "../../components/Login-Signup/LoginForm";
+import SignupForm from "../../components/Login-Signup/SignupForm";
+import DitherBG from "../../components/DitherBG/DitherBG";
 import "./Auth.css";
 
 export default function Auth() {
