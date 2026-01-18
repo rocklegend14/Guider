@@ -77,8 +77,8 @@ function ForgotPassword() {
           </button>
         </form>
         <div className="info">
-          {message && <p className="success-text">{message}</p>}
-          {error && <p className="error-text">{error}</p>}
+          {message && <p className="success-text-fp">{message}</p>}
+          {error && <p className="error-text-fp">{error}</p>}
         </div>  
       </div>
     </div>
