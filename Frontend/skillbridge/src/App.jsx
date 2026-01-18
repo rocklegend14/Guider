@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import './App.css'
 
-import Auth from './pages/Auth.jsx'
 import Profile from './pages/Profile.jsx'
 
 

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import DitherBG from "../components/DitherBG";
+import DitherBG from "../components/DitherBG/DitherBG.jsx";
 import "./Profile.css";
 
 // Structured department data
