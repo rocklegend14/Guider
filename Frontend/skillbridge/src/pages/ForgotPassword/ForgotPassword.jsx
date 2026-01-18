@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './ForgotPassword.css';
-import DitherBG from "../components/DitherBG/DitherBG";
+import DitherBG from "../../components/DitherBG/DitherBG";
 import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {

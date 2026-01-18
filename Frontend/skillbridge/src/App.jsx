@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import './App.css'
 import AppLayout from "./layout/AppLayout.jsx";
-import Auth from './pages/Auth.jsx'
-import ForgotPassword from './pages/ForgotPassword.jsx';
-import Dashboard from './pages/Dashboard.jsx';
+import Auth from './pages/Auth/Auth.jsx'
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword.jsx';
+import Dashboard from './pages/Dashboard/Dashboard.jsx';
 
 function App() {
   return (
