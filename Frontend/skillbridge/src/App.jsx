@@ -1,13 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import './App.css'
-
-import Profile from './pages/Profile.jsx'
-
-
+import './App.css';
 import AppLayout from "./layout/AppLayout.jsx";
 import Auth from './pages/Auth/Auth.jsx'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword.jsx';
 import Dashboard from './pages/Dashboard/Dashboard.jsx';
+import Profile from './pages/Profile/Profile.jsx'
 
 
 function App() {
@@ -18,11 +15,9 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/signup" element={<Auth />} />
 
-      <Route path="/profile" element={<Profile />} />
-
-
       <Route element={<AppLayout />}>
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
     </Routes>

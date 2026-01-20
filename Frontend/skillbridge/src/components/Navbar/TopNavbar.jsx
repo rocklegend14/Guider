@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"
 import "./TopNavbar.css";
 
 function TopNavbar({ isSidebarOpen }) {
@@ -36,7 +37,7 @@ function TopNavbar({ isSidebarOpen }) {
          <span className="caret"onClick={() => setOpen(!open)}>▾</span>
         {open && (
           <div className="dropdown">
-            <button>Profile</button>
+            <button><Link to ="/profile">Profile</Link></button>
             <button>Settings</button>
             <button onClick={logout}className="logout">Logout</button>
           </div>
