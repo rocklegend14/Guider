@@ -95,6 +95,8 @@ export default function Profile() {
   // UI state for dropdowns
   const [deptOpen, setDeptOpen] = useState(false);
   const [deptSearch, setDeptSearch] = useState("");
+  const [yearOpen, setYearOpen] = useState(false);
+  const [semesterOpen, setSemesterOpen] = useState(false);
   const [skillsOpen, setSkillsOpen] = useState(false);
   const [skillsSearch, setSkillsSearch] = useState("");
   const [coursesOpen, setCoursesOpen] = useState(false);
@@ -104,6 +106,8 @@ export default function Profile() {
 
   // Refs for click outside detection
   const deptRef = useRef(null);
+  const yearRef = useRef(null);
+  const semesterRef = useRef(null);
   const skillsRef = useRef(null);
   const coursesRef = useRef(null);
 
@@ -112,6 +116,12 @@ export default function Profile() {
     const handleClickOutside = (event) => {
       if (deptRef.current && !deptRef.current.contains(event.target)) {
         setDeptOpen(false);
+      }
+      if (yearRef.current && !yearRef.current.contains(event.target)) {
+        setYearOpen(false);
+      }
+      if (semesterRef.current && !semesterRef.current.contains(event.target)) {
+        setSemesterOpen(false);
       }
       if (skillsRef.current && !skillsRef.current.contains(event.target)) {
         setSkillsOpen(false);
@@ -155,23 +165,37 @@ export default function Profile() {
     setHasSaved(false);
   };
 
-  const handleYearChange = (e) => {
-    const year = parseInt(e.target.value);
+  const handleYearSelect = (year) => {
     setFormData((prev) => ({
       ...prev,
       year: year || "",
       semester: "", // Reset semester when year changes
     }));
+    setYearOpen(false);
+    setSemesterOpen(false); // Close semester dropdown when year changes
     setHasSaved(false);
   };
 
-  const handleSemesterChange = (e) => {
+  const handleSemesterSelect = (semester) => {
     setFormData((prev) => ({
       ...prev,
-      semester: parseInt(e.target.value) || "",
+      semester: semester || "",
     }));
+    setSemesterOpen(false);
     setHasSaved(false);
   };
+
+  // Format year label for display
+  const formatYearLabel = (year) => {
+    if (!year) return "";
+    if (year === 1) return `${year}st year`;
+    if (year === 2) return `${year}nd year`;
+    if (year === 3) return `${year}rd year`;
+    return `${year}th year`;
+  };
+
+  // Year options
+  const yearOptions = [1, 2, 3, 4];
 
   const handleSkillToggle = (skill) => {
     if (formData.skills.length >= 5 && !formData.skills.includes(skill)) {
@@ -310,47 +334,67 @@ export default function Profile() {
               </div>
 
               {/* Year Dropdown */}
-              <div className="field">
+              <div className="field" ref={yearRef}>
                 <span className="field-label">Year *</span>
-                <div className="input-group">
-                  <span className="input-icon">📅</span>
-                  <select
-                    name="year"
-                    value={formData.year}
-                    onChange={handleYearChange}
-                    className="form-input form-select"
-                    required
+                <div className="dropdown-wrapper">
+                  <div
+                    className="dropdown-trigger"
+                    onClick={() => setYearOpen(!yearOpen)}
                   >
-                    <option value="">Select year</option>
-                    {[1, 2, 3, 4].map((year) => (
-                      <option key={year} value={year}>
-                        {year === 1 ? `${year}st year` : year === 2 ? `${year}nd year` : year === 3 ? `${year}rd year` : `${year}th year`}
-                      </option>
-                    ))}
-                  </select>
+                    <span className="input-icon">📅</span>
+                    <span className="dropdown-value">
+                      {formData.year ? formatYearLabel(formData.year) : "Select year"}
+                    </span>
+                    <span className="dropdown-arrow">▼</span>
+                  </div>
+                  {yearOpen && (
+                    <div className="dropdown-menu">
+                      <div className="dropdown-options">
+                        {yearOptions.map((year) => (
+                          <div
+                            key={year}
+                            className={`dropdown-option ${formData.year === year ? "selected" : ""}`}
+                            onClick={() => handleYearSelect(year)}
+                          >
+                            {formatYearLabel(year)}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Semester Dropdown */}
-              <div className="field">
+              <div className="field" ref={semesterRef}>
                 <span className="field-label">Semester *</span>
-                <div className="input-group">
-                  <span className="input-icon">📆</span>
-                  <select
-                    name="semester"
-                    value={formData.semester}
-                    onChange={handleSemesterChange}
-                    className="form-input form-select"
-                    disabled={!formData.year}
-                    required
+                <div className="dropdown-wrapper">
+                  <div
+                    className={`dropdown-trigger ${!formData.year ? "disabled" : ""}`}
+                    onClick={() => formData.year && setSemesterOpen(!semesterOpen)}
+                    style={!formData.year ? { cursor: "not-allowed", opacity: 0.6, background: "#f0f0f0" } : {}}
                   >
-                    <option value="">Select semester</option>
-                    {availableSemesters.map((sem) => (
-                      <option key={sem} value={sem}>
-                        Semester {sem}
-                      </option>
-                    ))}
-                  </select>
+                    <span className="input-icon">📆</span>
+                    <span className="dropdown-value">
+                      {formData.semester ? `Semester ${formData.semester}` : "Select semester"}
+                    </span>
+                    <span className="dropdown-arrow">▼</span>
+                  </div>
+                  {semesterOpen && formData.year && (
+                    <div className="dropdown-menu">
+                      <div className="dropdown-options">
+                        {availableSemesters.map((sem) => (
+                          <div
+                            key={sem}
+                            className={`dropdown-option ${formData.semester === sem ? "selected" : ""}`}
+                            onClick={() => handleSemesterSelect(sem)}
+                          >
+                            Semester {sem}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
